@@ -1,3 +1,89 @@
+html,
 body {
-  background-color: rgb(228, 227, 227);
+  margin: 0;
+  height: 100%;
+  font-size: 1rem;
+  font-weight: normal;
+  line-height: 1.5;
+  background-color: #b8e6bf;
+}
+
+#root {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+#app {
+  display: flex;
+  justify-content: center;
+}
+
+h1 {
+  text-align: center;
+}
+
+button {
+  padding: 5px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  font-weight: 600;
+  text-align: center;
+}
+
+button:hover {
+  opacity: 0.6;
+}
+
+.btn-add {
+  margin-left: auto;
+  padding: 10px;
+  background-color: rgb(5, 150, 105);
+  font-size: 16px;
+  color: white;
+}
+
+.btn-edit {
+  background-color: wheat;
+}
+
+.btn-delete {
+  background-color: tomato;
+  color: white;
+}
+
+form {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+form > input {
+  margin-right: 10px;
+  width: 150px;
+  padding: 8px 0px;
+  border: 1px solid gray;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 16px;
+}
+
+ul {
+  all: unset;
+}
+
+li {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list-count {
+  display: block;
+  margin-bottom: 15px;
+  text-align: end;
+}
+
+.shadow {
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px 0 rgb(0 0 0 / 6%);
 }

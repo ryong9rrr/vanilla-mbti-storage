@@ -8,26 +8,18 @@
     <thead>
         <tr>
             <th colspan="2" style="text-align: center">
-                프로젝트 진행 과정 더 보기
+                이 프로젝트를 진행하며...
             </th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td style="text-align: center">🤔</td>
-            <td><a href="#">문제 해결 전략 생각해보기</a></td>
-        </tr>
-        <tr>
-            <td style="text-align: center">❗</td>
-            <td><a href="#">테스트 케이스</a></td>
-        </tr>
-        <tr>
-            <td style="text-align: center">🔨</td>
-            <td><a href="#">구현 과정과 리팩터링</a></td>
+            <td><a href="https://www.notion.so/ryong9rrr/mbti-5fa2a8edb29643c88c11eb58e01c3456">문제 해결 전략과 테스트 케이스</a></td>
         </tr>
         <tr>
             <td style="text-align: center">💡</td>
-            <td><a href="#">회고</a></td>
+            <td><a href="https://www.notion.so/ryong9rrr/4b402a6cb5e74ba0b4e8572c7f69974d">회고</a></td>
         </tr>
     </tbody>
 </table>
@@ -46,6 +38,8 @@
 
 ◻ 로컬스토리지를 이용해서 새로고침해도 데이터가 남아있게 합니다.
 
+◻ 리스트의 개수를 카운트 합니다.
+
 ## ❓ 이 프로젝트를 하는 목적
 
 ✔ 바닐라 자바스크립트에 좀 더 익숙해지기 위해
@@ -53,6 +47,8 @@
 ✔ 이전에 구현했던 to-do-list에 추가적인 기능을 부여하기 위해
 
 ✔ 이전에 구현했던 코드와 비교해보기 위해
+
+✔ 상태관리 연습을 위해
 
 ✔ TDD 연습을 위해
 

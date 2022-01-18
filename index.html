@@ -5,10 +5,70 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="src/css/index.css" />
-    <title>🙊내 친구들의 mbti 저장소</title>
+    <title>🙊내 친구들의 MBTI 저장소</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="root">
+      <div id="app">
+        <div>
+          <header>
+            <h1>🙊내 친구들의 MBTI 저장소</h1>
+          </header>
+          <main>
+            <form>
+              <label for="form-name" hidden> 이름 </label>
+              <input
+                class="shadow"
+                id="form-name"
+                type="text"
+                placeholder="이름"
+              />
+              <label for="form-mbti" hidden> MBTI </label>
+              <input
+                class="shadow"
+                id="form-mbti"
+                type="text"
+                placeholder="MBTI"
+              />
+              <button class="btn-add shadow" type="button" name="submit">
+                추가
+              </button>
+            </form>
+            <ul class="list">
+              <span class="list-count">총 2명</span>
+              <!--여기에 리스트 추가-->
+              <li>
+                <div>
+                  <span>홍길동</span>
+                  <button class="btn-edit shadow">수정</button>
+                </div>
+                <div>
+                  <span>INFJ</span>
+                  <button class="btn-edit shadow">수정</button>
+                </div>
+                <button class="btn-delete shadow">삭제</button>
+              </li>
+              <!--
+                마크업
+
+                <li>
+                  <div>
+                    <span>${이름}</span>
+                    <button class="shadow">수정</button>
+                  </div>
+                  <div>
+                    <span>${mbti}</span>
+                    <button class="shadow">수정</button>
+                  </div>
+                  <button class="del shadow">삭제</button>
+                </li>
+
+              -->
+            </ul>
+          </main>
+        </div>
+      </div>
+    </div>
   </body>
   <script type="module" src="src/index.js"></script>
 </html>
