@@ -78,10 +78,24 @@ li {
   align-items: center;
 }
 
-.list-count {
-  display: block;
+li > div > span {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.mbti-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
   margin-bottom: 15px;
-  text-align: end;
+}
+
+.mbti-header > h2 {
+  margin: 0;
+}
+
+.mbti-count {
+  font-size: 14px;
 }
 
 .shadow {

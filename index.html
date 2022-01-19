@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="src/css/index.css" />
-    <title>🙊내 친구들의 MBTI 저장소</title>
+    <title>🙊 내 친구들의 MBTI 저장소</title>
   </head>
   <body>
     <div id="root">
@@ -15,13 +15,14 @@
             <h1>🙊내 친구들의 MBTI 저장소</h1>
           </header>
           <main>
-            <form>
+            <form id="form">
               <label for="form-name" hidden> 이름 </label>
               <input
                 class="shadow"
                 id="form-name"
                 type="text"
                 placeholder="이름"
+                autocomplete="off"
               />
               <label for="form-mbti" hidden> MBTI </label>
               <input
@@ -29,44 +30,36 @@
                 id="form-mbti"
                 type="text"
                 placeholder="MBTI"
+                autocomplete="off"
               />
               <button class="btn-add shadow" type="button" name="submit">
                 추가
               </button>
             </form>
-            <ul class="list">
-              <span class="list-count">총 2명</span>
-              <!--여기에 리스트 추가-->
-              <li>
-                <div>
-                  <span>홍길동</span>
-                  <button class="btn-edit shadow">수정</button>
-                </div>
-                <div>
-                  <span>INFJ</span>
-                  <button class="btn-edit shadow">수정</button>
-                </div>
-                <button class="btn-delete shadow">삭제</button>
-              </li>
+            <div class="mbti-header">
+              <h2>📜 목록</h2>
+              <span class="mbti-count">총 0 명</span>
+            </div>
+            <ul class="mbti-list">
               <!--
-                마크업
+                  마크업
 
                 <li>
-                  <div>
-                    <span>${이름}</span>
-                    <button class="shadow">수정</button>
+                  <div class="mbti-list-name">
+                    <span>${name}</span>
+                    <button class="btn-edit btn-edit-name shadow">수정</button>
                   </div>
-                  <div>
+                  <div class="mbti-list-mbti">
                     <span>${mbti}</span>
-                    <button class="shadow">수정</button>
+                    <button class="btn-edit btn-edit-mbti shadow">수정</button>
                   </div>
-                  <button class="del shadow">삭제</button>
+                  <button class="btn-delete shadow">삭제</button>
                 </li>
 
               -->
             </ul>
           </main>
-        </div>
+        
       </div>
     </div>
   </body>
