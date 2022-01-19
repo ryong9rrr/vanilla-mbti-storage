@@ -23,6 +23,7 @@
                 type="text"
                 placeholder="이름"
                 autocomplete="off"
+                data-cy-name="name"
               />
               <label for="form-mbti" hidden> MBTI </label>
               <input
@@ -31,31 +32,19 @@
                 type="text"
                 placeholder="MBTI"
                 autocomplete="off"
+                data-cy-mbti="mbti"
               />
-              <button class="btn-add shadow" type="button" name="submit">
+              <button class="btn-add shadow" type="button" name="submit" data-cy-submit="submit">
                 추가
               </button>
             </form>
             <div class="mbti-header">
               <h2>📜 목록</h2>
-              <span class="mbti-count">총 0 명</span>
+              <span class="mbti-count">총 0명</span>
             </div>
             <ul class="mbti-list">
               <!--
                   마크업
-
-                <li>
-                  <div class="mbti-list-name">
-                    <span>${name}</span>
-                    <button class="btn-edit btn-edit-name shadow">수정</button>
-                  </div>
-                  <div class="mbti-list-mbti">
-                    <span>${mbti}</span>
-                    <button class="btn-edit btn-edit-mbti shadow">수정</button>
-                  </div>
-                  <button class="btn-delete shadow">삭제</button>
-                </li>
-
               -->
             </ul>
           </main>
