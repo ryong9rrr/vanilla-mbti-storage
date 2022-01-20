@@ -8,7 +8,7 @@ function App() {
     });
   };
 
-  const makeList = (name, mbti) => {
+  const makeLi = (name, mbti) => {
     return `
       <li>
         <div>
@@ -19,9 +19,14 @@ function App() {
           <span class="mbti-list-mbti">${mbti}</span>
           <button class="btn-edit btn-edit-mbti shadow">수정</button>
         </div>
-        <button class="btn-delete shadow">삭제</button>
+        <button class="btn-remove shadow">삭제</button>
       </li>
     `;
+  };
+
+  const countList = () => {
+    const count = $(".mbti-list").querySelectorAll("li").length;
+    $(".mbti-count").textContent = `총 ${count}명`;
   };
 
   const addList = () => {
@@ -32,13 +37,12 @@ function App() {
     const { ok, message } = valid.isValid();
     if (!ok) return alert(message);
     // 리스트 추가
-    const listTemplate = makeList(name, mbti.toUpperCase());
+    const listTemplate = makeLi(name, mbti.toUpperCase());
     $("#form-name").value = $("#form-mbti").value = "";
     $("#form-name").focus();
     $(".mbti-list").insertAdjacentHTML("beforeend", listTemplate);
     // 카운트
-    const count = $(".mbti-list").querySelectorAll("li").length;
-    $(".mbti-count").textContent = `총 ${count}명`;
+    countList();
   };
 
   const editValue = (e, type) => {
@@ -72,7 +76,10 @@ function App() {
   };
 
   const removeList = (e) => {
-    console.log("리스트 삭제");
+    if (confirm("정말 삭제할까요?")) {
+      e.target.closest("li").remove();
+      countList();
+    }
   };
 
   // 이벤트
@@ -98,7 +105,7 @@ function App() {
       return editMbti(e);
     }
     // 삭제
-    if (e.target.classList.contains("btn-delete")) {
+    if (e.target.classList.contains("btn-remove")) {
       return removeList(e);
     }
   });

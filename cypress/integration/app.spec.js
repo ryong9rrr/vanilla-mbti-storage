@@ -7,6 +7,9 @@ const checkName = (name) => cy.get(".mbti-list-name").should("have.text", name);
 
 const checkMbti = (mbti) => cy.get(".mbti-list-mbti").should("have.text", mbti);
 
+const checkCount = (n) =>
+  cy.get(".mbti-count").should("have.text", `총 ${n}명`);
+
 describe("example to-do app", () => {
   beforeEach(() => {
     cy.visit("http://127.0.0.1:5500/index.html");
@@ -37,7 +40,7 @@ describe("example to-do app", () => {
     addItem("홍길동", "ESFJ");
     checkName("홍길동");
     checkMbti("ESFJ");
-    cy.get(".mbti-count").should("have.text", "총 1명");
+    checkCount(1);
   });
 
   it("올바르지 않은 mbti를 입력했을 때", () => {
@@ -52,15 +55,84 @@ describe("example to-do app", () => {
     addItem("용상윤", "infj");
     checkName("홍길동용상윤");
     checkMbti("ESFJINFJ");
-    cy.get(".mbti-count").should("have.text", "총 2명");
+    checkCount(2);
   });
 
   // 수정
   it("이름 수정하기", () => {
     addItem("홍길동", "ESFJ");
+    cy.window().then(($win) => {
+      cy.stub($win, "prompt").returns("용상윤");
+      cy.get(".btn-edit-name").click();
+    });
+    checkName("용상윤");
+  });
+
+  it("이름 수정하려했다가 취소하기", () => {
+    addItem("홍길동", "ESFJ");
+    cy.window().then(($win) => {
+      cy.stub($win, "prompt").returns(false);
+      cy.get(".btn-edit-name").click();
+    });
+    checkName("홍길동");
   });
 
   it("mbti 수정하기", () => {
     addItem("홍길동", "ESFJ");
+    cy.window().then(($win) => {
+      cy.stub($win, "prompt").returns("infj");
+      cy.get(".btn-edit-mbti").click();
+    });
+    checkMbti("INFJ");
+  });
+
+  it("mbti 수정하려했다가 취소하기", () => {
+    addItem("홍길동", "ESFJ");
+    cy.window().then(($win) => {
+      cy.stub($win, "prompt").returns(false);
+      cy.get(".btn-edit-mbti").click();
+    });
+    checkMbti("ESFJ");
+  });
+
+  it("잘못된 mbti로 수정하기", () => {
+    addItem("홍길동", "ESFJ");
+    cy.window().then(($win) => {
+      cy.stub($win, "prompt").returns("infz");
+      cy.get(".btn-edit-mbti").click();
+      cy.on("window:alert", (txt) => {
+        expect(txt).to.contains("올바른 mbti를 입력해주세요.");
+      });
+    });
+  });
+
+  it("리스트 삭제하기", () => {
+    addItem("홍길동", "ESFJ");
+    checkCount(1);
+    cy.get(".btn-remove").click();
+    cy.on("window:confirm", (str) => {
+      expect(str).to.equal(`정말 삭제할까요?`);
+    });
+    cy.on("window:confirm", () => true);
+    checkCount(0);
+  });
+
+  it("리스트 삭제하려했다가 취소하기", () => {
+    addItem("홍길동", "ESFJ");
+    cy.get(".btn-remove").click();
+    cy.on("window:confirm", (str) => {
+      expect(str).to.equal(`정말 삭제할까요?`);
+    });
+    cy.on("window:confirm", () => false);
+    checkName("홍길동");
+    checkMbti("ESFJ");
+    checkCount(1);
+  });
+
+  it("리스트 여러개 삭제하고 순서확인하기", () => {
+    addItem("홍길동", "ESFJ");
+    addItem("용상윤", "infj");
+    cy.get(".btn-remove").click();
+    checkCount(1);
   });
 });
