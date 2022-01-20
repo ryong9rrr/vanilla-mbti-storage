@@ -50,6 +50,14 @@ describe("example to-do app", () => {
     });
   });
 
+  it("중복된 이름을 추가했을 때", () => {
+    addItem("홍길동", "ESFJ");
+    addItem("홍길동", "ESFJ");
+    cy.on("window:alert", (str) => {
+      expect(str).to.equal(`중복된 이름이 있어요.`);
+    });
+  });
+
   it("리스트 두 개 추가하고 카운트 체크", () => {
     addItem("홍길동", "ESFJ");
     addItem("용상윤", "infj");
@@ -75,6 +83,18 @@ describe("example to-do app", () => {
       cy.get(".btn-edit-name").click();
     });
     checkName("홍길동");
+  });
+
+  it("중복된 이름으로 수정하기", () => {
+    addItem("홍길동", "ESFJ");
+    addItem("신짱구", "ESFJ");
+    cy.window().then(($win) => {
+      cy.stub($win, "prompt").returns("신짱구");
+      cy.get("[data-list-id=0]>div>.btn-edit-name").click();
+      cy.on("window:alert", (txt) => {
+        expect(txt).to.contains("중복된 이름이 있어요.");
+      });
+    });
   });
 
   it("mbti 수정하기", () => {
@@ -132,7 +152,32 @@ describe("example to-do app", () => {
   it("리스트 여러개 삭제하고 순서확인하기", () => {
     addItem("홍길동", "ESFJ");
     addItem("용상윤", "infj");
-    cy.get(".btn-remove").click();
-    checkCount(1);
+    addItem("노진구", "infp");
+    addItem("신짱구", "ESFP");
+    addItem("흰둥이", "intp");
+    cy.get("[data-list-id=4]>.btn-remove").click();
+    cy.get("[data-list-id=0]>.btn-remove").click();
+    cy.get("[data-list-id=1]>.btn-remove").click();
+    checkName("용상윤신짱구");
+    checkMbti("INFJESFP");
+    checkCount(2);
+  });
+
+  it("새로고침해서 데이터 남아있는지 확인하기", () => {
+    addItem("홍길동", "ESFJ");
+    addItem("용상윤", "infj");
+    addItem("노진구", "infp");
+    addItem("신짱구", "ESFP");
+    addItem("흰둥이", "intp");
+    cy.get("[data-list-id=4]>.btn-remove").click();
+    cy.get("[data-list-id=0]>.btn-remove").click();
+    cy.get("[data-list-id=1]>.btn-remove").click();
+    checkName("용상윤신짱구");
+    checkMbti("INFJESFP");
+    checkCount(2);
+    cy.reload();
+    checkName("용상윤신짱구");
+    checkMbti("INFJESFP");
+    checkCount(2);
   });
 });

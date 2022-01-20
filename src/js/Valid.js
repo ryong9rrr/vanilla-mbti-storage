@@ -5,7 +5,12 @@ export class Valid {
   }
 
   isValidName = () => {
-    // if 중복된 이름이 있으면 return false;
+    const data = JSON.parse(localStorage.getItem("users"));
+    if (data.length > 0) {
+      for (const { name, _ } of data) {
+        if (this.name === name) return false;
+      }
+    }
     return true;
   };
 
