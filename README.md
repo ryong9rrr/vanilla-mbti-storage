@@ -2,7 +2,9 @@
 
 과거 진행했던 to-do-list를 업그레이드 합니다.
 
-[링크](#)를 클릭하시면 완성된 위 프로젝트를 체험하실 수 있습니다.
+![mbti](https://user-images.githubusercontent.com/64957267/150505914-bcec1184-a601-4650-9922-f2d6dca3884d.gif)
+
+[링크](https://ryong9rrr.github.io/projects/mbti-storage/)를 클릭하시면 데모를 체험하실 수 있습니다.
 
 <table>
     <thead>

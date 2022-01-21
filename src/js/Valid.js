@@ -1,3 +1,10 @@
+import store from "./store.js";
+
+const returnResult = (ok, message = null) => ({
+  ok,
+  message,
+});
+
 export class Valid {
   constructor(id, name, mbti) {
     this.id = id;
@@ -6,7 +13,7 @@ export class Valid {
   }
 
   isValidName = () => {
-    const data = JSON.parse(localStorage.getItem("users"));
+    const data = store.getLocalStorage();
     if (data.length > 0) {
       for (let i = 0; i < data.length; i++) {
         if (this.id !== i && this.name === data[i].name) return false;
@@ -31,13 +38,13 @@ export class Valid {
 
   isValid = () => {
     if (this.name == "" || this.mbti == "")
-      return { ok: false, message: "이름과 mbti를 모두 입력해주세요." };
+      return returnResult(false, "이름과 mbti를 모두 입력해주세요.");
 
     if (!this.isValidMbti())
-      return { ok: false, message: "올바른 mbti를 입력해주세요." };
+      return returnResult(false, "올바른 mbti를 입력해주세요.");
 
     if (!this.isValidName())
-      return { ok: false, message: "중복된 이름이 있어요." };
-    return { ok: true, message: null };
+      return returnResult(false, "중복된 이름이 있어요.");
+    return returnResult(true);
   };
 }
