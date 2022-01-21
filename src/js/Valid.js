@@ -1,5 +1,6 @@
 export class Valid {
-  constructor(name, mbti) {
+  constructor(id, name, mbti) {
+    this.id = id;
     this.name = name;
     this.mbti = mbti;
   }
@@ -7,8 +8,8 @@ export class Valid {
   isValidName = () => {
     const data = JSON.parse(localStorage.getItem("users"));
     if (data.length > 0) {
-      for (const { name, _ } of data) {
-        if (this.name === name) return false;
+      for (let i = 0; i < data.length; i++) {
+        if (this.id !== i && this.name === data[i].name) return false;
       }
     }
     return true;

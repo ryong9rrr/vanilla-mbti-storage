@@ -58,7 +58,8 @@ function App() {
     const name = $("#form-name").value;
     const mbti = $("#form-mbti").value;
     // 유효성 검사
-    const valid = new Valid(name, mbti);
+    const newId = $(".mbti-list").querySelectorAll("li").length + 1;
+    const valid = new Valid(newId, name, mbti);
     const { ok, message } = valid.isValid();
     if (!ok) return alert(message);
     // 유효성 검사를 통과하면
@@ -84,7 +85,7 @@ function App() {
 
   const editName = (e) => {
     const { listId, newValue } = editValue(e, "name");
-    const valid = new Valid(newValue, "");
+    const valid = new Valid(listId, newValue, "");
     if (!valid.isValidName()) {
       return alert("중복된 이름이 있어요.");
     }
@@ -94,7 +95,7 @@ function App() {
 
   const editMbti = (e) => {
     const { listId, newValue } = editValue(e, "mbti");
-    const valid = new Valid("", newValue.toUpperCase());
+    const valid = new Valid(listId, "", newValue.toUpperCase());
     if (!valid.isValidMbti()) {
       return alert("올바른 mbti를 입력해주세요.");
     }
