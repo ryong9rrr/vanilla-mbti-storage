@@ -1,8 +1,10 @@
+import { User } from "./type";
+
 const store = {
-  setLocalStorage(users) {
+  setLocalStorage(users: User[]) {
     localStorage.setItem("users", JSON.stringify(users));
   },
-  getLocalStorage() {
+  getLocalStorage(): User[] {
     return JSON.parse(localStorage.getItem("users"));
   },
 };

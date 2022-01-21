@@ -12,7 +12,7 @@ const checkCount = (n) =>
 
 describe("example to-do app", () => {
   beforeEach(() => {
-    cy.visit("http://127.0.0.1:5500/index.html");
+    cy.visit("http://localhost:1234/");
   });
 
   // 추가

@@ -1,4 +1,6 @@
-export const editValue = (e, type) => {
+import { EditResult } from "./type";
+
+export const editValue = (e: MouseEvent, type: string): EditResult => {
   const parse = {
     ["name"]: "이름을",
     ["mbti"]: "MBTI를",

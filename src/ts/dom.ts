@@ -1,6 +1,9 @@
-export const $ = (selector) => document.querySelector(selector);
+import { List, User } from "./type";
 
-export const makeLi = (user, index) => {
+export const $ = (selector: string): HTMLElement | null =>
+  document.querySelector(selector);
+
+export const makeLi = (user: User, index: Number): List => {
   return `
       <li data-list-id="${index}">
         <div>
@@ -16,6 +19,6 @@ export const makeLi = (user, index) => {
     `;
 };
 
-export const formPreventDefault = () => {
-  return $("#form").addEventListener("submit", (e) => e.preventDefault());
+export const formPreventDefault = (): void => {
+  return $("#form")?.addEventListener("submit", (e) => e.preventDefault());
 };
