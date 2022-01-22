@@ -1,97 +1,115 @@
 import { $, formPreventDefault, makeLi } from "./js/dom.js";
 import { Valid } from "./js/valid.js";
-import { editValue } from "./js/utils.js";
 import store from "./js/store.js";
 
-function App() {
-  this.users = [];
-  this.init = () => {
+class App {
+  constructor() {
+    this._users = [];
     if (store.getLocalStorage()) {
-      this.users = store.getLocalStorage();
+      this._users = store.getLocalStorage();
     }
-    initEventListener();
-    render();
+  }
+
+  run = () => {
+    this.#initEventListener();
+    this.#render();
   };
 
-  const render = () => {
-    store.setLocalStorage(this.users);
-    const listTemplate = this.users
+  #countList = () =>
+    ($(".mbti-count").textContent = `총 ${this._users.length}명`);
+
+  #render = () => {
+    store.setLocalStorage(this._users);
+    const listTemplate = this._users
       .map((user, index) => makeLi(user, index))
       .join("");
     $(".mbti-list").innerHTML = listTemplate;
-    $(".mbti-count").textContent = `총 ${this.users.length}명`;
+    this.#countList();
   };
 
-  const addList = () => {
+  #editValue = (e, type) => {
+    const parse = {
+      ["name"]: "이름을",
+      ["mbti"]: "MBTI를",
+    };
+    const listId = Number(e.target.closest("li").dataset.listId);
+    const $element = e.target.closest("li").querySelector(`.mbti-list-${type}`);
+    const newValue =
+      prompt(`${parse[type]} 수정할까요?`, $element.textContent) ||
+      $element.textContent;
+    return { listId, newValue };
+  };
+
+  #addList = () => {
     const name = $("#form-name").value;
     const mbti = $("#form-mbti").value;
     // 유효성 검사
-    const valid = new Valid(this.users.length + 1, name, mbti);
+    const valid = new Valid(this._users.length + 1, name, mbti);
     const { ok, message } = valid.isValid();
     if (!ok) return alert(message);
     // 유효성 검사를 통과하면
     $("#form-name").value = $("#form-mbti").value = "";
     $("#form-name").focus();
     // 렌더링
-    this.users.push({ name, mbti: mbti.toUpperCase() });
-    return render();
+    this._users.push({ name, mbti: mbti.toUpperCase() });
+    return this.#render();
   };
 
-  const editName = (e) => {
-    const { listId, newValue } = editValue(e, "name");
+  #editName = (e) => {
+    const { listId, newValue } = this.#editValue(e, "name");
     const valid = new Valid(listId, newValue, "");
     if (!valid.isValidName()) {
       return alert("중복된 이름이 있어요.");
     }
-    this.users[listId].name = newValue;
-    return render();
+    this._users[listId].name = newValue;
+    return this.#render();
   };
 
-  const editMbti = (e) => {
-    const { listId, newValue } = editValue(e, "mbti");
+  #editMbti = (e) => {
+    const { listId, newValue } = this.#editValue(e, "mbti");
     const valid = new Valid(listId, "", newValue.toUpperCase());
     if (!valid.isValidMbti()) {
       return alert("올바른 mbti를 입력해주세요.");
     }
-    this.users[listId].mbti = newValue.toUpperCase();
-    return render();
+    this._users[listId].mbti = newValue.toUpperCase();
+    return this.#render();
   };
 
-  const removeList = (e) => {
+  #removeList = (e) => {
     if (confirm("정말 삭제할까요?")) {
       const listId = Number(e.target.closest("li").dataset.listId);
-      this.users.splice(listId, 1);
-      return render();
+      this._users.splice(listId, 1);
+      return this.#render();
     }
   };
 
-  // 이벤트
-  const initEventListener = () => {
+  #initEventListener = () => {
     formPreventDefault();
     //추가
-    $(".btn-add").addEventListener("click", addList);
+    $(".btn-add").addEventListener("click", this.#addList);
     $("#form").addEventListener("keydown", (e) => {
       if (e.key === "Enter") {
-        return addList();
+        return this.#addList();
       }
     });
     //수정, 삭제
     $(".mbti-list").addEventListener("click", (e) => {
       // 이름 수정
       if (e.target.classList.contains("btn-edit-name")) {
-        return editName(e);
+        return this.#editName(e);
       }
       // mbti 수정
       if (e.target.classList.contains("btn-edit-mbti")) {
-        return editMbti(e);
+        return this.#editMbti(e);
       }
       // 삭제
       if (e.target.classList.contains("btn-remove")) {
-        return removeList(e);
+        return this.#removeList(e);
       }
     });
   };
 }
 
 const app = new App();
-app.init();
+
+document.addEventListener("DOMContentLoaded", app.run());
