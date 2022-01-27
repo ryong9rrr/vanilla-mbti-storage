@@ -4,29 +4,39 @@
 
 ![mbti](https://user-images.githubusercontent.com/64957267/150505914-bcec1184-a601-4650-9922-f2d6dca3884d.gif)
 
-[링크](https://ryong9rrr.github.io/projects/mbti-storage/)를 클릭하시면 데모를 체험하실 수 있습니다.
+👋 [프로젝트 링크](https://ryong9rrr.github.io/projects/mbti-storage/)
 
 <table>
     <thead>
         <tr>
             <th colspan="2" style="text-align: center">
-                이 프로젝트를 진행하며...
+                🛠 Skills & Tools
             </th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td style="text-align: center">🤔</td>
-            <td><a href="https://www.notion.so/ryong9rrr/mbti-5fa2a8edb29643c88c11eb58e01c3456">문제 해결 전략과 테스트 케이스</a></td>
+            <td style="text-align: center">Layout & Style</td>
+            <td>HTML / CSS</td>
         </tr>
         <tr>
-            <td style="text-align: center">💡</td>
-            <td><a href="https://www.notion.so/ryong9rrr/4b402a6cb5e74ba0b4e8572c7f69974d">회고</a></td>
+            <td style="text-align: center">Language</td>
+            <td>Vanilla JS</td>
+        </tr>
+        <tr>
+            <td style="text-align: center">Test</td>
+            <td>Cypress</td>
+        </tr>
+        <tr>
+            <td style="text-align: center">keywords</td>
+            <td><strong>Vanilla JS</strong> | <strong>TDD</strong> | <strong>상태 관리</strong> | <strong>로컬스토리지</strong></td>
         </tr>
     </tbody>
 </table>
 
-## 🎯 프로젝트 요구사항
+</br>
+
+# 🎯 요구사항
 
 ◻ 이름과 mbti를 입력하면 등록 버튼 클릭 또는 엔터키 입력으로 리스트에 추가합니다.
 
@@ -57,3 +67,23 @@
 ✔ 리팩터링 연습을 위해
 
 ✔ 타입스크립트 연습을 위해
+
+<table>
+    <thead>
+        <tr>
+            <th colspan="2" style="text-align: center">
+                생각해보기 (Notion-blog)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: center">🤔</td>
+            <td><a href="https://www.notion.so/ryong9rrr/mbti-5fa2a8edb29643c88c11eb58e01c3456">문제 해결 전략과 테스트 케이스</a></td>
+        </tr>
+        <tr>
+            <td style="text-align: center">💡</td>
+            <td><a href="https://www.notion.so/ryong9rrr/4b402a6cb5e74ba0b4e8572c7f69974d">회고</a></td>
+        </tr>
+    </tbody>
+</table>
