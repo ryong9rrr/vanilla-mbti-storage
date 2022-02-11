@@ -4,6 +4,8 @@
 
 ![mbti](https://user-images.githubusercontent.com/64957267/150505914-bcec1184-a601-4650-9922-f2d6dca3884d.gif)
 
+(테스트 중인 모습)
+
 👋 [프로젝트 링크](https://ryong9rrr.github.io/projects/mbti-storage/)
 
 <table>
